@@ -3,7 +3,7 @@
  *
  * Display blog content
  *}
-{include file="frontend/components/header.tpl" pageTitleTranslated=$title}
+{include file="frontend/components/header.tpl" pageTitleTranslated=$title|escape}
 
 <article class="container page-blog-post">
 	<div class="row page-header justify-content-md-center">
@@ -11,9 +11,9 @@
 		    <div class="blog-date">
 			{$entry->getDatePosted()|date_format:"%B %e, %Y"}
 		    </div>
-			<h1>{$entry->getTitle()}</h1>
+			<h1>{$entry->getTitle()|escape}</h1>
 				<div class="byline">
-					{if null !== $entry->getByline() }By{/if} {$entry->getByline()}
+					{if null !== $entry->getByline() }By{/if} {$entry->getByline()|escape}
 				</div>
 		</div>
 	</div>
@@ -28,7 +28,7 @@
 		<div class="col-md-8">
 			<article class="page-content">
 		{foreach from=$keywords item=word }
-						<a class="btn" href="{url router=$smarty.const.ROUTE_PAGE page="blog" op="index" keyword="$word"}">{$word}</a>
+						<a class="btn" href="{url router=$smarty.const.ROUTE_PAGE page="blog" op="index" keyword="$word"}">{$word|escape}</a>
 		{/foreach}
 		</article>
 		</div>

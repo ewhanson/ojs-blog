@@ -3,47 +3,47 @@
  *
  * Display blog content
  *}
-{include file="frontend/components/header.tpl" pageTitleTranslated=$title}
+{include file="frontend/components/header.tpl" pageTitleTranslated=$title|escape}
 
 	<main class="page-blog col-md-12">
-	
+
 		<header class="page-header">
-			<h1>{$title}</h1>
+			<h1>{$title|escape}</h1>
 			<div class="blog-description">
 				 <!-- description can go here -->
 			</div>
 		</header>
-		
+
 		{if $keywords|@count > 0}
 		<div class="filter-box">
 			<form method="get">
-				Filter by keyword: 
+				Filter by keyword:
 				<select name="keyword" onchange='this.form.submit()'>
 					{foreach from=$keywords item=word }
-						<option value="{$word}" {if $word == $currentKeyword}selected{/if}>{$word}</option>
+						<option value="{$word}" {if $word == $currentKeyword}selected{/if}>{$word|escape}</option>
 					{/foreach}
 				</select>
 			</form>
 		</div>
 		{/if}
-		
-		{foreach from=$entries item=entry}        
-		
+
+		{foreach from=$entries item=entry}
+
 			<article class="blog-summary">
-			
+
 				<h2>
 					<a href="{url router=$smarty.const.ROUTE_PAGE page="blog" op="view" path=$entry->getId()}">
-						{$entry->getTitle()}
+						{$entry->getTitle()|escape}
 					</a>
 				</h2>
-				
+
 				<div class="blog-summary-date">
 					{$entry->getDatePosted()|date_format:"%B %e, %Y"}
 				</div>
 				<div class="blog-summary-byline">
-					{if null !== $entry->getByline() }| By{/if}  {$entry->getByline()}
+					{if null !== $entry->getByline() }| By{/if}  {$entry->getByline()|escape}
 				</div>
-				
+
 				<div class="blog-summary-description">
 					{$entry->getAbbreviatedContent()|strip_unsafe_html}
 					<div class="blog-summary-more">
@@ -52,20 +52,20 @@
 						</a>
 					</div>
 				</div>
-				
+
 				<div class="blog-summary-tags">
 					<article class="page-content">
 						{assign var=entry_keywords value=$entry->getKeywords()}
 						{foreach from=$entry_keywords item=word }
-							<a href="{url router=$smarty.const.ROUTE_PAGE page="blog" op="index" keyword="$word"}">{$word}</a>
+							<a href="{url router=$smarty.const.ROUTE_PAGE page="blog" op="index" keyword="$word"}">{$word|escape}</a>
 						{/foreach}
 					</article>
-				</div>	
-			
-			</article>      	    				
-		
+				</div>
+
+			</article>
+
 		{/foreach}
-	
+
 <div>
 		{* Pagination *}
 		{if $prevPage > 1}

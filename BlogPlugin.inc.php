@@ -38,6 +38,12 @@ class BlogPlugin extends GenericPlugin {
 		return (isset($products['tinymce']));
 	}
 
+	public function getInstallMigration()
+	{
+		$this->import('BlogPluginMigration');
+		return new BlogPluginMigration();
+	}
+
 	/**
 	 * @copydoc Plugin::register()
 	 */

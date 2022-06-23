@@ -20,7 +20,7 @@
 	{fbvFormArea id="blogEntryFormArea" class="border"}
 		{fbvFormSection label="plugins.generic.blog.pageTitle" for="title"}
 		 <tr valign="top">
-	<td class="value"><input type="text" id="title" name="title" value="{$title}" size="20" maxlength="255" class="textField" /></td>
+	<td class="value"><input type="text" id="title" name="title" value="{$title|escape}" size="20" maxlength="255" class="textField" /></td>
  </tr>
 	{/fbvFormSection}
 	{fbvFormSection label="plugins.generic.blog.content" for="content"}
@@ -32,20 +32,20 @@
 	{/fbvFormSection}
 	{fbvFormSection label="plugins.generic.blog.byline" for="byline"}
 		 <tr valign="top">
-	<td class="value"><input type="text" id="byline" name="byline" value="{$byline}" size="20" maxlength="255" class="textField" /></td>
+	<td class="value"><input type="text" id="byline" name="byline" value="{$byline|escape}" size="20" maxlength="255" class="textField" /></td>
  </tr>
 	{/fbvFormSection}
 	{fbvFormSection label="plugins.generic.blog.datePosted" for="datePosted"}
-		<tr valign="top">	
+		<tr valign="top">
 			{fbvElement type="text" id="datePosted" value=$datePosted size=$fbvStyles.size.SMALL class="datepicker"}
- 		</tr>			
+ 		</tr>
 	{/fbvFormSection}
-	{/fbvFormArea}	
+	{/fbvFormArea}
 	{fbvFormArea id="tagitFields" class="border"}
         {fbvFormSection label="common.keywords"}
                                 {fbvElement type="keyword" id="keywords" current=$keywords }
                         {/fbvFormSection}
-	{/fbvFormArea}	
+	{/fbvFormArea}
 	{fbvFormSection class="formButtons"}
 		{assign var=buttonId value="submitFormButton"|concat:"-"|uniqid}
 		{fbvElement type="submit" class="submitFormButton" id=$buttonId label="common.save"}
